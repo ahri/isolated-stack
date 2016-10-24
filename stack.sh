@@ -4,7 +4,7 @@ set -ue
 
 wd="`pwd`"
 
-img=stack
+img=isolated-stack
 
 if ! docker images | awk -vimg=$img 'BEGIN { ret=1 } NR > 1 && $1 == img { ret=0 } END { exit ret }'; then
 	fullname="`readlink -e "$0"`"

@@ -7,7 +7,6 @@ RUN apt update && \
     rm -rf /var/lib/apt
 
 ENTRYPOINT ["/usr/local/bin/stack"]
-CMD ["--version"]
 
 USER nobody
 ENV HOME /tmp
