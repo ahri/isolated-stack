@@ -10,3 +10,5 @@ ENTRYPOINT ["/usr/local/bin/stack"]
 
 USER nobody
 ENV HOME /tmp
+
+ENV PATH $HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
