@@ -12,4 +12,5 @@ if ! docker images | awk -vimg=$img 'BEGIN { ret=1 } NR > 1 && $1 == img { ret=0
 	docker build . -t $img
 fi
 
-docker run --rm -it -v "$HOME/.stack":/tmp/.stack -v "$HOME/.local/bin":/tmp/.local/bin -v "$wd":/tmp/project -w /tmp/project --user=`id -u`:`id -g` $img "$@"
+mkdir -p "$HOME/.stack" "$HOME/.local/bin"
+docker run --rm -it -v "$HOME/.stack":"$HOME/.stack" -v "$HOME/.local/bin":"$HOME/.local/bin" -v "$wd":/tmp/project -w /tmp/project $img `id -u` `id -g` "$HOME" "$@"
