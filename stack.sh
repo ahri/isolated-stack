@@ -2,8 +2,6 @@
 
 set -ue
 
-wd="`pwd`"
-
 img=isolated-stack
 
 if ! docker images | awk -vimg=$img 'BEGIN { ret=1 } NR > 1 && $1 == img { ret=0 } END { exit ret }'; then
@@ -12,4 +10,4 @@ if ! docker images | awk -vimg=$img 'BEGIN { ret=1 } NR > 1 && $1 == img { ret=0
 fi
 
 mkdir -p "$HOME/.stack" "$HOME/.local/bin"
-docker run --rm -it -v "$HOME/.stack":"$HOME/.stack" -v "$HOME/.local/bin":"$HOME/.local/bin" -v "$wd":/tmp/project -w /tmp/project $img `id -u` `id -g` "$HOME" "$@"
+docker run --rm -it -v "$HOME/.stack":"$HOME/.stack" -v "$HOME/.local/bin":"$HOME/.local/bin" -v "`pwd`":/tmp/project -w /tmp/project $img `id -u` `id -g` "$HOME" "$@"
